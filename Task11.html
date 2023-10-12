@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Information Page</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="infoForm">
+        <label for="nameInput">Name:</label>
+        <input type="text" id="nameInput" name="name" placeholder="Your Name"><span id="nameError" class="error"></span><br><br>
+
+        <label for="emailInput">Email:</label>
+        <input type="email" id="emailInput" name="email" placeholder="Your Email"><span id="emailError" class="error"></span><br><br>
+
+        <label for="websiteInput">Website:</label>
+        <input type="url" id="websiteInput" name="website" placeholder="Your Website"><span id="websiteError" class="error"></span><br><br>
+
+        <label for="messageInput">Message:</label>
+        <textarea id="messageInput" name="message" placeholder="Your Message"></textarea><span id="messageError" class="error"></span><br><br>
+
+        <button type="button" onclick="submitInformation()">Submit</button>
+        <p id="output"></p>
+    </form>
+
+    <script>
+        function submitInformation() {
+            const name = document.getElementById("nameInput").value;
+            const email = document.getElementById("emailInput").value;
+            const website = document.getElementById("websiteInput").value;
+            const message = document.getElementById("messageInput").value;
+
+            const nameError = document.getElementById("nameError");
+            const emailError = document.getElementById("emailError");
+            const websiteError = document.getElementById("websiteError");
+            const messageError = document.getElementById("messageError");
+
+            // Reset error messages
+            nameError.textContent = "";
+            emailError.textContent = "";
+            websiteError.textContent = "";
+            messageError.textContent = "";
+
+            let hasErrors = false;
+
+            if (name.trim() === "") {
+                nameError.textContent = "This is a required field";
+                hasErrors = true;
+            }
+
+            if (email.trim() === "") {
+                emailError.textContent = "This is a required field";
+                hasErrors = true;
+            }
+
+            if (website.trim() === "") {
+                websiteError.textContent = "This is a required field";
+                hasErrors = true;
+            }
+
+            if (message.trim() === "") {
+                messageError.textContent = "This is a required field";
+                hasErrors = true;
+            }
+
+            if (hasErrors) {
+                return;
+            }
+
+            document.getElementById("output").textContent = "Hello, " + name + "! Your email is " + email + ", your website is " + website + ", and your message is: " + message;
+        }
+    </script>
+</body>
+</html>
